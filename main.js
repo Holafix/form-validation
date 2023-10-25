@@ -1,18 +1,18 @@
-var nameError =document.getElementById('name-error');
-var phoneError =document.getElementById('phone-error');
-var emailError =document.getElementById('email-error');
-var messageError =document.getElementById('message-error');
+var nameError = document.getElementById('name-error');
+var phoneError = document.getElementById('phone-error');
+var emailError = document.getElementById('email-error');
+var messageError = document.getElementById('message-error');
 
 function nameNote() {
     var nameInput = document.getElementById('nameInput').value;
 
-    if(nameInput.length==0){
+    if (nameInput.length == 0) {
         nameError.innerHTML = 'name field is empty';
         return false;
     }
 
-    if(!nameInput.match(/[a-zA-Z]{3}\s{1}[A-Za-z]/)){
-        nameError.innerHTML= 'write full name';
+    if (!nameInput.match(/[a-zA-Z]{3}\s{1}[A-Za-z]/)) {
+        nameError.innerHTML = 'write full name';
         return false;
 
     }
@@ -20,20 +20,20 @@ function nameNote() {
     return true;
 }
 
-function phoneNote(){
+function phoneNote() {
     var phoneInput = document.getElementById('phoneInput').value;
 
-    if(phoneInput.length==0){
+    if (phoneInput.length == 0) {
         phoneError.innerHTML = 'phone field is empty';
         return false;
     }
 
-    if(phoneInput.length !== 10){
+    if (phoneInput.length !== 10) {
         phoneError.innerHTML = 'phone No must be 10 digits';
         return false;
     }
 
-    if(!phoneInput.match(/[0-9]{10}/)){
+    if (!phoneInput.match(/[0-9]{10}/)) {
         phoneError.innerHTML = 'digits only';
         return false;
     }
@@ -45,12 +45,12 @@ function phoneNote(){
 function emailNote() {
     var emailInput = document.getElementById('emailInput').value;
 
-    if(emailInput.length == 0){
+    if (emailInput.length == 0) {
         emailError.innerHTML = 'email field cannot be empty';
         return false;
     }
 
-    if(!emailInput.match(/^[A-Za-z\.\_\-[0-9]*[@][A-Za-z]*\.[a-z]{2,4}$/)){
+    if (!emailInput.match(/^[A-Za-z\.\_\-[0-9]*[@][A-Za-z]*\.[a-z]{2,4}$/)) {
         emailError.innerHTML = 'invalid email';
         return false;
     }
@@ -61,18 +61,28 @@ function emailNote() {
 
 function messageNote() {
     var messageInput = document.getElementById('messageInput').value;
-    var required  = 30;
+    var required = 30;
     var left = required - messageInput.length;
 
-    if(messageInput.length == 0) {
+    if (messageInput.length == 0) {
         messageError.innerHTML = 'message field cannot be empty';
         return false;
     }
 
-    if(messageInput.length<required){
+    if (messageInput.length < required) {
         messageError.innerHTML = left + ' ' + 'more characters is required';
         return false;
     }
 
-    messageError.innerHTML = '<i class="fas fa-check-circle"></i>'
+    messageError.innerHTML = '<i class="fas fa-check-circle"></i>';
+}
+
+function submitCheck() {
+    var submitError = document.getElementById('submit-error');
+
+    if (!nameNote() || !phoneNote() || !emailNote() || !messageNote()) {
+        submitError.innerHTML = 'Pls fix error before submitting!';
+        return false;
+    }
+
 }
