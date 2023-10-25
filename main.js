@@ -75,13 +75,16 @@ function messageNote() {
     }
 
     messageError.innerHTML = '<i class="fas fa-check-circle"></i>';
+    return true
 }
 
 function submitCheck() {
     var submitError = document.getElementById('submit-error');
 
     if (!nameNote() || !phoneNote() || !emailNote() || !messageNote()) {
+        submitError.style.display = 'block';
         submitError.innerHTML = 'Pls fix error before submitting!';
+        setTimeout(function(){submitError.style.display = 'none'}, 3000);
         return false;
     }
 
